@@ -4,6 +4,15 @@ description: 'Ecosystem and Development'
 icon: "gear-code"
 ---
 
+import SnippetExamplesTargetClone from '/snippets/main/target/examples-clone.mdx';
+import SnippetExamplesTargetInstallDeps from '/snippets/main/target/examples-install-deps.mdx';
+import SnippetExamplesTargetBuild from '/snippets/main/target/examples-build.mdx';
+import SnippetExamplesTargetRun from '/snippets/main/target/examples-run.mdx';
+import SnippetExamplesHostClone from '/snippets/main/host/examples-clone.mdx';
+import SnippetExamplesHostInstallDeps from '/snippets/main/host/examples-install-deps.mdx';
+import SnippetExamplesHostBuild from '/snippets/main/host/examples-build.mdx';
+import SnippetExamplesHostRun from '/snippets/main/host/examples-run.mdx';
+
 This section contains information about the scope of the T3 Gemstone Project, what kind of work can be done, methods 
 for software development, and an introduction to the ecosystem.
 
@@ -134,38 +143,26 @@ the board is explained, and each component is separately described in the Develo
 
 <Tip>
 This section shows how to download the t3gemstone/examples project onto the board, compile it, and run the examples.
-For more detailed information check out the README.md file of t3gemstone/examples project.
+After connecting to the Gemstone development board via [Serial port](./quickstart#21-serial-port),
+[SSH](./quickstart#23-ssh-connection-over-the-network), or
+[VNC](./quickstart#22-vnc-remote-desktop-connection-via-browser), apply the following steps.
 </Tip>
 
 #### 2.1.1. Clone example projects with Git
 
-```bash
-gemstone@t3-gem-o1:~$ git clone https://github.com/t3gemstone/examples.git
-gemstone@t3-gem-o1:~$ cd examples
-```
+<SnippetExamplesTargetClone />
 
 #### 2.1.2. Install libraries and additional tools needed for compilation
 
-```bash
-gemstone@t3-gem-o1:examples$ sudo apt install -y build-essential libncurses-dev libgpiod-dev
-gemstone@t3-gem-o1:examples$ ./setup.sh
-gemstone@t3-gem-o1:examples$ devbox shell
-gemstone@t3-gem-o1:examples$ task fetch
-```
+<SnippetExamplesTargetInstallDeps />
 
 #### 2.1.3. Compile an example project
 
-```bash
-gemstone@t3-gem-o1:examples$ CROSS_COMPILE=false PROJECT=magnetometer task build
-```
+<SnippetExamplesTargetBuild />
 
 #### 2.1.4. Run the compiled project
 
-```bash
-gemstone@t3-gem-o1:examples$ sudo ./build/examples/magnetometer/c/magnetometer
-gemstone@t3-gem-o1:examples$ sudo ./build/examples/magnetometer/cpp/magnetometer
-gemstone@t3-gem-o1:examples$ sudo ./build/examples/magnetometer/python/magnetometer
-```
+<SnippetExamplesTargetRun />
 
 ### 2.2. Software Development on the Developer's Computer
 
@@ -226,24 +223,15 @@ gemstone@t3-gem-o1:~$ ping 10.0.0.2
 
 #### 2.2.2. Clone example projects with Git
 
-```bash
-ubuntu@host:~$ git clone https://github.com/t3gemstone/examples.git
-ubuntu@host:~$ cd examples
-```
+<SnippetExamplesHostClone />
 
 #### 2.2.3. Install toolchain and additional tools needed for compilation
 
-```bash
-ubuntu@host:examples$ ./setup.sh
-ubuntu@host:examples$ devbox shell
-ubuntu@host:examples$ task fetch
-```
+<SnippetExamplesHostInstallDeps />
 
 #### 2.2.4. Cross compile an example project using the toolchain
 
-```bash
-ubuntu@host:examples$ PROJECT=magnetometer task build
-```
+<SnippetExamplesHostBuild />
 
 #### 2.2.5. Upload compiled project into the development board
 
@@ -253,8 +241,4 @@ ubuntu@host:examples$ scp -r build/examples gemstone@10.0.0.1:build
 
 #### 2.2.6. Run the compiled project
 
-```bash
-gemstone@t3-gem-o1:~$ sudo ./build/magnetometer/c/magnetometer
-gemstone@t3-gem-o1:~$ sudo ./build/magnetometer/cpp/magnetometer
-gemstone@t3-gem-o1:~$ sudo ./build/magnetometer/python/magnetometer
-```
+<SnippetExamplesHostRun />
